@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.2/css/bootstrap.min.css" integrity="sha512-jOuN+OzvTlE20xtYzOQNTWjb6ySKv7VSVU6lyq3rVWU1+aKUtkmJz6R0fk7VX8W2ZiKPvTgT07T12Tfwf8x41w==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <title>Registration Form</title>
+    <style>
+        * {
+          box-sizing: border-box;
+          margin: 0;
+          padding: 0;
+        }
+
+        body {
+          font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+          background-color: #f2f2f2;
+        }
+
+        /* Style the form container */
+        .container {
+          margin: 50px auto;
+          padding: 20px;
+          max-width: 600px;
+          background-color: #fff;
+          border-radius: 5px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Style the form headings */
+        h1 {
+          font-size: 28px;
+          text-align: center;
+          margin-bottom: 20px;
+        }
+
+        h2 {
+          font-size: 24px;
+          margin-bottom: 10px;
+        }
+
+        /* Style the form inputs and labels */
+        form {
+          display: flex;
+          flex-direction: column;
+        }
+
+        label {
+          font-size: 16px;
+          margin-bottom: 5px;
+          color: #333;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="number"],
+        input[type="password"] {
+          font-size: 16px;
+          padding: 10px;
+          margin-bottom: 20px;
+          border-radius: 5px;
+          border: none;
+          background-color: #f2f2f2;
+          color: #333;
+        }
+
+        input[type="submit"] {
+          font-size: 16px;
+          padding: 10px 20px;
+          margin-top: 20px;
+          border: none;
+          border-radius: 5px;
+          background-color: #4CAF50;
+          color: #fff;
+          cursor: pointer;
+          transition: background-color 0.3s ease-in-out;
+        }
+
+        input[type="submit"]:hover {
+          background-color: #3e8e41;
+        }
+        .submit-btn {
+          background-color: #4CAF50; /* Green background color */
+          border: none; /* Remove button border */
+          color: white; /* Text color */
+          padding: 12px 24px; /* Add padding */
+          text-align: center; /* Center text */
+          text-decoration: none; /* Remove underline */
+          display: inline-block; /* Make button a block element */
+          font-size: 16px; /* Set font size */
+          border-radius: 5px; /* Add rounded corners */
+          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.25); /* Add box shadow */
+        }
+
+        .submit-btn:hover {
+          background-color: #3e8e41; /* Darker green background color on hover */
+        }
+
+
+        /* Style the error messages */
+        .error {
+          font-size: 14px;
+          color: red;
+          margin-top: -10px;
+          margin-bottom: 10px;
+        }
+
+        /* Style the success message */
+        .success {
+          font-size: 18px;
+          color: green;
+          margin-top: 10px;
+          margin-bottom: 20px;
+        }
+
+        /* Add media query for smaller screens */
+        @media (max-width: 768px) {
+          .container {
+            margin: 10px;
+            max-width: none;
+          }
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-6">
+          <form name="myform" method="post" onsubmit="return myforms()" class="form-container">
+            <h2>Registration Form</h2>
+            <div class="form-group">
+              <label for="Usrname">Username:</label>
+              <input type="text" id="Usrname" name="username" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" class="form-control" required/>
+            </div>
+            <div class="form-group">
+              <label for="number">Mobile No.:</label>
+               <input type="tel" class="form-control" id="number" name="number" minlength="10" maxlength="10" required />
+        </div>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" class="form-control" id="name" name="name" required/>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" name="password" required/>
+        </div>
+              <div class="form-group">
+                  <label for="cpassword">Confirm Password:</label>
+                        <input type="password" id="cpassword" name="cpassword" class="form-control" required />
+                    </div>
+                    <button class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+        <script>
+            function UserNameValidation() {
+                var UserName = document.myform.Usrname.value;
+                if (UserName == "" && UserName.length < 25) {
+                    alert("Please fill a valid username.");
+                    return false;
+                }
+            }
+
+            function NumberValidation() {
+                var Contact = document.myform.number.value;
+                if (Contact.length < 10 || Contact.length > 10) {
+                    alert("Wrong number! Please enter a valid 10-digit mobile number.");
+                    return false;
+                }
+            }
+
+            function NameValidation() {
+                var Name = document.myform.name.value;
+                var NameValidation = /^[a-zA-Z ]*$/;
+                if (!NameValidation.test(Name)) {
+                    alert("Please enter a valid name.");
+                    return false;
+                }
+            }
+
+            function MatchpassValidation() {
+                var password = document.myform.password.value;
+                var cpassword = document.myform.cpassword.value;
+
+                if (password == cpassword) {
+                    alert("Login successful!");
+                } else {
+                    alert("Passwords must match!");
+                    return false;
+                }
+            }
+
+            function myforms() {
+                UserNameValidation();
+                NumberValidation();
+                NameValidation();
+                MatchpassValidation();
+            }
+
+        </script>
+  </body></html>
